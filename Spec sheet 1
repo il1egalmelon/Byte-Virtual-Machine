@@ -1,0 +1,95 @@
+BVM programming language specification sheet no. 1
+
+'{' pushes the scope by 1
+'}' pops the scope by 1
+
+"=>" pushes a layer, increases stackframe by 1
+"<>" pops a layer, decreases stackframe by 1
+
+'(' enters a calling directive
+')' exits a calling directive
+
+& denotes a variable string          eg: &"variable_name"
+$ denotes a constant value           eg: $234
+% denotes a code block string        eg: %"BasicBlock.0"
+
+.empty denotes that this input of a calling directive has no input, thus NULL
+
+__v => variable
+__c => constant/immediate
+__l => label/symbol
+__s => string
+
+SRC => Source register
+SND => Source & destination register
+
+objects:
+    1: varName
+    2: scope
+    3: locationIndexZero
+    4: typeSize
+    5: size
+
+stack callframe bytes:
+    0x01 SECTION_DATA
+    0x02 SECTION_CODE
+
+macros:
+  MCC0 USE                             Loads a macro file
+  MCC1 GLOBAL                          Loads a global static variable file
+
+keywords:
+    L0 LoadSRC             __v         Loads a VAR into SRC
+    L1 LoadSRC_const       __c         Loads a IMM into SRC
+    L2 LoadSND             __v         Loads a VAR into SND
+    L3 LoadSND_const       __c         Loads a IMM into SND
+    L4 LoadIndex           __v         Loads a VAR into SND, with index at SRC
+    L5 LoadRaw                         Fetches data from address in SRC with size in SND, fetches into SND
+    S0 Store               __v         Store SND into VAR with size in SRC
+    S1 StoreIndex          __v         Store SND into VAR with index at SRC
+    S2 StoreRaw            __v         Stores data using SRC as address, SND as value, VAR as size
+    M0 MoveSNDSRC                      SND -> SRC
+    M1 MoveSRCSND                      SRC -> SND
+    M2 Swap                            SRC <> SND
+    L6 LoadLabel           __l         Stores label/symbol into LoadedLabel
+    J0 Jump                            Jumps to a label
+    J1 JumpBR                          Jumps to a label while saving 8 bytes onto the stack
+    J2 Compare                         Compares SRC and SND, stores in FLAGS
+    J3 JumpIfEqual                     Jumps if equal
+    J4 JumpIfNotEqual                  Jumps if not equal
+    J5 JumpIfLess                      Jumps if less
+    J6 JumpIfGreater                   Jumps if greater
+    A0 Add                             Add SRC with SND, stores in SND
+    A1 Subtract                        Subtracts SRC with SND, stores in SND
+    A2 Multiply                        Multiplies SRC with SND, stores in SND
+    A3 Divide                          Divides SRC with SND, stores in SND
+    A4 Modulus                         Modulus of SRC and SND, stores in SND
+    A5 Increment                       Increments SRC, stores in SND
+    A6 Decrement                       Decrements SRC, stores in SND
+    B0 BitwiseNot                      NOTs SRC, stores into SND
+    B1 BitwiseXor                      XORs SRC with SND, stores into SND
+    B2 BitwiseAnd                      ANDs SRC with SND, stores into SND
+    B3 BitwiseOR                       ORs SRC with SND, stores into SND
+    B4 ShiftLeft                       Shifts SRC left by SND, stores into SND
+    B5 ShiftRight                      Shifts SRC right by SND, stores into SND
+    B6 RotateLeft                      Rotates SRC left by SND, stores into SND
+    B7 RotateRight                     Rotates SRC right by SND, stores into SND
+    B8 ArithmeticLeft                  Arithmetic SRC left by SND, stores into SND
+    B9 ArithmeticRight                 Arithmetic SRC right by SND, stores into SND
+    C0 Wait                            Wait how many milliseconds in SRC
+    M3 GetZeroIndexOf      __v         Gets the address of the first index of VAR, store into SND
+    M4 Return                          Pops 8 bytes off the stack, uses it as return address
+    M5 MemoryStackMax                  Gets max stack size, stores into SND
+    M6 MemoryHeapMax                   Gets max heap size, stores into SND
+    M7 Realloc             __v         Reallocates VAR with size SRC, puts it onto the top of heap
+    M8 Sizeof              __v         Returns size of a VAR, stores into SND
+    M9 GetPointers                     Gets STKPNT and HEPPNT, stores into SRC and SND
+
+calls:
+  CCL0 ConsoleOut          __s __v     Runs "Console.Write(__s + __v);"
+  CCL1 ConsoleOutSND                   Runs "Console.Write(SND);"
+  CCL2 ConsoleReadKey      __v         Runs "Console.ReadKey(true);", stores into VAR
+  CCL3 ConsoleReadLine     __v         Runs "Console.ReadLine();", stores into VAR
+  CCL4 SetCursorPos                    Runs "Console.SetCursorPosition(SRC, SND);"
+  CCL5 GetCursorPos                    Runs "Console.GetCursorPosition;", stores into SRC and SND
+  CCL6 MemoryCopy          __v         Runs "Macros.Memcpy(__v, SND, SRC);"
