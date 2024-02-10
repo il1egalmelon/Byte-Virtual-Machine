@@ -1,0 +1,54 @@
+Start
+
+Main()
+StaticData =>
+    Char[auto] &"str" assign $"done!" $0
+    Integer &"iterCount" assign $0
+    Long &"arg0" assign $2132232323233434345
+    Long &"arg1" assign $23232323
+    Long &"rst0"
+<>
+
+{
+%"Entry"
+    ConsoleOut (
+        &"arg0"
+        $10
+        &"arg1"
+        $10 $10
+    )
+
+%"Loop"
+{
+    L0 &"arg0"
+    L2 &"arg1"
+    A3
+    
+    L1 $8
+    S0 &"rst0"
+
+    L2 &"iterCount"
+    L1 $500000
+    J2
+
+    L0 &"iterCount"
+    A5
+    L1 $4
+    S0 &"iterCount"
+}
+    L6 %"Loop"
+    J6
+
+%"Out"
+    ConsoleOut (
+        __string &"str"
+        $10
+        $"Iteration" $32 $"count:" $32 $10
+        &"iterCount"
+        $10
+        $"rst0:" $10
+        &"rst0"
+    )
+}
+
+End

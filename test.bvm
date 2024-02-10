@@ -1,0 +1,55 @@
+Start
+
+Main()
+
+StaticData =>
+    Char[10] &"str" assign $"done!" $0
+    Integer &"iterCount" assign $0
+    Long &"arg0" assign $2132232323233434345
+    Long &"arg1" assign $23232323
+    Long &"rst0"
+<>
+
+{
+%"Entry"
+    ConsoleOut (
+        &"arg0"
+        $10
+        &"arg1"
+        $10 $10
+    )
+
+%"Loop"
+{
+    LoadSRC &"arg0"
+    LoadSND &"arg1"
+    Divide
+    
+    LoadSRC_const $8
+    Store &"rst0"
+
+    LoadSND &"iterCount"
+    LoadSRC_const $500000
+    Compare
+
+    LoadSRC &"iterCount"
+    Increment
+    LoadSRC_const $4
+    Store &"iterCount"
+}
+    LoadLabel %"Loop"
+    JumpIfGreater
+
+%"Out"
+    ConsoleOut (
+        __string &"str"
+        $10
+        $"Iteration" $32 $"count:" $32 $10
+        &"iterCount"
+        $10
+        $"rst0:" $10
+        &"rst0"
+    )
+}
+
+End
