@@ -1,3 +1,5 @@
+Copyright 2024 il1egalmelon
+
 BVM programming language specification sheet no. 1
 
 '{' pushes the scope by 1
