@@ -1,4 +1,4 @@
-/*
+﻿/*
     Copyright 2024 il1egalmelon
 */
 
@@ -109,18 +109,18 @@ class MainFunction {
     public static Runtime instancedRuntime;
     public static string  FILEPATH = "";
 
-    public static void Main(string[] arguments) {
+    public static void Main(string[] argInput) {
         //arg0: Filepath
         //arg1: Memory Stack
         //arg2: Memory Heap
 
         List<string> args;
 
-        if (arguments.Length != 4) {
+        if (argInput.Length != 4) {
             args = new List<string>();
             args = GUI.GuiMain();
         } else {
-            args = new List<string>(arguments);
+            args = new List<string>(argInput);
         }
 
         (string filepath, long mStack, long mHeap, string mode) = ParseStartupInput(args.ToArray());
@@ -180,7 +180,7 @@ class MainFunction {
             Console.WriteLine("\n\nExecution time: " + watch.ElapsedMilliseconds + "ms");
             Console.WriteLine(    "GC time:        " + instancedRuntime.GCtimeMS.ElapsedMilliseconds + "ms");
 
-            if (arguments.Length != 4) {
+            if (argInput.Length != 4) {
                 Console.ReadKey();
             }
         }
