@@ -223,17 +223,11 @@ class Macros {
                 string valueNew = value.Substring(1);
 
                 if (valueNew[0] == '"') {
-                    valueNew = valueNew.Substring(1);
-                    valueNew = valueNew.Substring(0, valueNew.Length - 1);
+                    valueNew = valueNew.Substring(1, valueNew.Length - 2);
 
-                    System.Collections.Generic.List<int> __tmp0 = new System.Collections.Generic.List<int>();
                     foreach (char c in valueNew) {
                         int byteValues = char.ConvertToUtf32(c.ToString(), 0);
-                        __tmp0.Add(byteValues);
-                    }
-
-                    foreach (Int128 e in __tmp0) {
-                        elements.Add(e);
+                        elements.Add(byteValues);
                     }
                 } else {
                     elements.Add((Int128) System.Numerics.BigInteger.Parse(valueNew));

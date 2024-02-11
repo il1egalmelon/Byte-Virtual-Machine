@@ -53,7 +53,7 @@ class Inline {
         else
         if (RunCallInner(line)) {}
         else
-        if (line.Contains("()") || line.Contains("%") || line == "{" || line == "}" ||
+        if (line.Contains("()") || line[0] == '%' || line == "{" || line == "}" ||
             line == "StaticData =>" || line == "StaticCode =>" || line == "<>") {}
         else {System.Console.WriteLine("[EE] : Invalid keyword!"); throw new System.Exception("RUNTIME ERROR");}
     }

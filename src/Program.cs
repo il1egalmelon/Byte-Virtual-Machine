@@ -99,9 +99,6 @@ class Runtime {
             //Debug.PrintOutStackFrame();
         }
     }
-
-    public void RuntimeEntryPointParsed() {
-    }
 }
 
 class MainFunction {
