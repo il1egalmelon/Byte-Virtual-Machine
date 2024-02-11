@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+    Copyright 2024 il1egalmelon
+*/
+
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;

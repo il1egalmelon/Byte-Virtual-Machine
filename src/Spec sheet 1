@@ -1,3 +1,5 @@
+Copyright 2024 il1egalmelon
+
 BVM programming language specification sheet no. 1
 
 '{' pushes the scope by 1
@@ -19,6 +21,7 @@ __v => variable
 __c => constant/immediate
 __l => label/symbol
 __s => string
+__f => file path
 
 SRC => Source register
 SND => Source & destination register
@@ -35,8 +38,8 @@ stack callframe bytes:
     0x02 SECTION_CODE
 
 macros:
-  MCC0 USE                             Loads a macro file
-  MCC1 GLOBAL                          Loads a global static variable file
+  MCC0 USE                 __f         Loads a macro file
+  MCC1 GLOBAL              __f         Loads a global static variable file
 
 keywords:
     L0 LoadSRC             __v         Loads a VAR into SRC
