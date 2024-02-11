@@ -1,3 +1,7 @@
+/*
+    Copyright 2024 il1egalmelon
+*/
+
 using System;
 using System.Collections.Generic;
 
