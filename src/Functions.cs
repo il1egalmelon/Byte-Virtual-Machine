@@ -487,6 +487,54 @@ class Inline {
                 RunKeyword.GetPointers();
 
                 return true;
+
+            case "P0":
+            case "Push":
+                RunKeyword.Push(lines[1]);
+
+                return true;
+
+            case "P1":
+            case "Push_const":
+                RunKeyword.Push_const(lines[1]);
+
+                return true;
+
+            case "P2":
+            case "PushSRC":
+                RunKeyword.PushSRC();
+                
+                return true;
+
+            case "P3":
+            case "PushSND":
+                RunKeyword.PushSND();
+                
+                return true;
+
+            case "P4":
+            case "PushIndex":
+                RunKeyword.PushIndex(lines[1]);
+                
+                return true;
+
+            case "P5":
+            case "Pop":
+                RunKeyword.Pop(lines[1]);
+
+                return true;
+
+            case "P6":
+            case "PopSRC":
+                RunKeyword.PopSRC();
+                
+                return true;
+
+            case "P7":
+            case "PopIndex":
+                RunKeyword.PopIndex(lines[1]);
+                
+                return true;
         }
 
         return false;
@@ -871,6 +919,38 @@ class RunKeyword {
     public static void GetPointers() {
         instancedRuntime.SRC = instancedRuntime.STKPNT;
         instancedRuntime.SND = instancedRuntime.HEPPNT;
+    }
+
+    public static void Push(string __v) {
+
+    }
+
+    public static void Push_const(string __c) {
+
+    }
+
+    public static void PushSRC() {
+
+    }
+    
+    public static void PushSND() {
+
+    }
+
+    public static void PushIndex(string __v) {
+
+    }
+
+    public static void Pop(string __v) {
+
+    }
+
+    public static void PopSRC() {
+
+    }
+
+    public static void PopIndex(string __v) {
+
     }
 }
 

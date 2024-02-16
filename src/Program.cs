@@ -87,7 +87,6 @@ class Runtime {
         }
 
         linePointer = entry;
-
         while (true) {
             Inline.RunLine(code[linePointer]);
 

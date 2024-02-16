@@ -87,6 +87,14 @@ keywords:
     M7 Realloc             __v         Reallocates VAR with size SRC, puts it onto the top of heap
     M8 Sizeof              __v         Returns size of a VAR, stores into SND
     M9 GetPointers                     Gets STKPNT and HEPPNT, stores into SRC and SND
+    P0 Push                __v         Pushes a VAR onto the stack
+    P1 Push_const          __c         Pushes a IMM onto the stack
+    P2 PushSRC                         Pushes SRC onto the stack
+    P3 PushSND                         Pushes SND onto the stack
+    P4 PushIndex           __v         Pushes VAR[SRC] onto the stack
+    P5 Pop                 __v         Pops all element of stack, stores into VAR
+    P6 PopSRC                          Pops 8 bytes off the stack, stores into SRC
+    P7 PopIndex            __v         Pops one element of index SRC off the stack, stores into VAR
 
 calls:
   CCL0 ConsoleOut          __s __v     Runs "Console.Write(__s + __v);"
